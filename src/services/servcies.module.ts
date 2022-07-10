@@ -1,14 +1,13 @@
 import { Module } from '@nestjs/common';
-import { BusProducerService } from './bus-producer/bus-producer.service';
 import { UserProducerService } from './user-producer/user-producer.service';
-
+import { BusModule } from "moat-lib-be-pubsub/pub-sub";
 @Module({
     providers: [
-        BusProducerService,
+        BusModule.initPublisher("localhost:50000"),
         UserProducerService
     ],
     exports: [
         UserProducerService
     ]
 })
-export class ServciesModule {}
+export class ServciesModule { }

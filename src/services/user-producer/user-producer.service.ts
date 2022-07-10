@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
+import { PublishService } from 'moat-lib-be-pubsub/pub-sub';
 import { CHANNELS } from 'src/constants/message-channels';
 import { CreateUserDto } from 'src/dtos/create-user.interface';
-import { BusProducerService } from '../bus-producer/bus-producer.service';
 
 @Injectable()
 export class UserProducerService {
-    public constructor(private bus: BusProducerService) {
+    public constructor(private bus: PublishService) {
 
     }
 
