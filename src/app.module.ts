@@ -5,8 +5,10 @@ import { UserController } from './controllers/user/user.controller';
 import { ServciesModule } from './services/servcies.module';
 
 @Module({
-  imports: [ServciesModule],
+  imports: [
+    ServciesModule
+  ],
   controllers: [AppController, UserController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
