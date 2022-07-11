@@ -1,0 +1,42 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-be-api-gateway
+spec:
+  selector:
+    app: app-be-api-gateway
+  ports:
+    - protocol: "TCP"
+      port: 3000
+      targetPort: 3000
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-be-api-gateway
+spec:
+  selector:
+    matchLabels:
+      app: app-be-api-gateway
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: app-be-api-gateway
+    spec:
+      containers:
+        - name: app-be-api-gateway
+          image: app-be-api-gateway:v1.0.2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+          env:
+            - name: NEST_APP_NAME
+              value: "app-be-api-gateway"
+            - name: NEST_API_PORT
+              value: "3000"
+            - name: NEST_MQ_CONNECTION_STRING
+              value: "kubemq-cluster-grpc.kubemq:50000"
