@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: app-be-api-gateway
-          image: app-be-api-gateway:v1.0.2
+          image: app-be-api-gateway:v1.0.3
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
